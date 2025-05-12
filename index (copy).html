@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Calculator</title>
+
+</head>
+
+<body>
+  <div class="calculator">
+    <h2>Advanced Calculator</h2>
+    <input type="text" id="inputExpression">
+    <div class="result" id="result"></div>
+
+    <!-- Buttons Section -->
+    <div class="buttons">
+      <button class="calculate" onclick="calculateResult()">Calculate</button>
+      <!-- <button class="clear" onclick="clearInput()">Clear</button> -->
+      <button class="reset" onclick="resetCalculator()">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    const inputExpression = document.getElementById('inputExpression');
+    const resultDiv = document.getElementById('result');
+
+    // Listen for the "Enter" key
+    inputExpression.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        calculateResult();
+      }
+    });
+
+    // Calculate the result of the expression
+    function calculateResult() {
+      const expression = inputExpression.value.trim(); // Get the input value and remove extra spaces
+
+      if (expression === '') {
+        resultDiv.textContent = 'Please enter an expression.';
+        return;
+      }
+
+      try {
+        // Use JavaScript's eval() to evaluate the expression
+        const result = eval(expression);
+
+        // Check if the result is a valid number
+        if (isNaN(result) || !isFinite(result)) {
+          throw new Error('Invalid operation');
+        }
+
+        // Display the result
+        resultDiv.textContent = `Result: ${result}`;
+      } catch (error) {
+        resultDiv.textContent = 'Invalid expression. Please use numbers and operators (+, -, *, /).';
+      }
+    }
+
+
+    // Reset both the input field and the result display
+    function resetCalculator() {
+      inputExpression.value = ''; // Clear the input field
+      resultDiv.textContent = ''; // Clear the result display
+    }
+  </script>
+</body>
+
+</html>

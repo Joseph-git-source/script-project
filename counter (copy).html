@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+
+
+</head>
+
+<body>
+  <div class="counter-container">
+    <h1>Counter</h1>
+    <div class="counter-display" id="counter">0</div>
+    <div class="buttons">
+      <button id="decrement" disabled>Decrement</button>
+      <button id="clear">Clear</button>
+      <button id="increment">Increment</button>
+    </div>
+  </div>
+
+  <script>
+    // Initialize the counter variable to 0
+    let count = 0;
+    // Get references to the DOM elements
+    const counterDisplay = document.getElementById('counter');
+    // Displays the counter value
+    const decrementButton = document.getElementById('decrement');
+    // Decrement button
+    const clearButton = document.getElementById('clear');
+    // Clear button
+    const incrementButton = document.getElementById('increment');
+    // Increment button
+
+    // Function to update the counter display and button states
+    function updateCounter() {
+      // Update the text content of the counter display with the current count
+      counterDisplay.textContent = count;
+      // Disable the decrement button if the count is 0
+      decrementButton.disabled = count === 0;
+
+      // Disable the increment button if the count is 20
+      incrementButton.disabled = count === 20;
+    }
+    // Add a click event listener to the decrement button
+    decrementButton.addEventListener('click', () => {
+      // Check if the count is greater than 0 before decrementing
+      if (count > 0) {
+        count--;
+        // Decrease the count by 1
+        updateCounter();
+        // Update the display and button states
+      }
+    });
+
+    // Add a click event listener to the clear button
+    clearButton.addEventListener('click', () => {
+      count = 0;
+      // Reset the count to 0
+      updateCounter();
+      // Update the display and button states
+    });
+    // Add a click event listener to the increment button
+    incrementButton.addEventListener('click', () => {
+      // Check if the count is less than 20 before incrementing
+      if (count < 20) {
+        count++;
+        // Increase the count by 1
+        updateCounter();
+        // Update the display and button states
+      }
+    });
+
+    // Initialize the counter display when the page loads 
+    updateCounter();
+  </script>
+</body>
+
+</html>
